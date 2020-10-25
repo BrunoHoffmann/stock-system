@@ -1,40 +1,30 @@
-import { createRouter, createWebHistory } from 'vue-router';
-import NProgress from 'nprogress';
+import Vue from 'vue';
+import VueRouter from 'vue-router';
+
+Vue.use(VueRouter);
 
 const routes = [
   {
     path: '/',
-    name: 'List all Product',
-    component: () => import('../components/list-product/ListProductComponent'),
+    name: 'Home',
+    component: () => import('../views/Home.vue'),
   },
   {
-    path: '/create-product',
-    name: 'Create new Product',
-    component: () => import('../components/create-product/CreateProductComponent'),
+    path: '/usuario',
+    name: 'usuario',
+    component: () => import('../views/Usuario.vue'),
   },
   {
-    path: '/edit-product/:id',
-    name: 'Update Product',
-    component: () => import('../components/edit-product/EditProductComponent'),
+    path: '/usuario/adicionar',
+    name: 'usuario.adicionar',
+    component: () => import('../views/UsuarioAdd.vue'),
   },
 ];
 
-const router = createRouter({
-  history: createWebHistory(process.env.BASE_URL),
+const router = new VueRouter({
+  mode: 'history',
+  base: process.env.BASE_URL,
   routes,
-});
-
-router.beforeResolve((to, from, next) => {
-  // Quando houver carregamento de uma pagina inicial, então usar o NProgress
-  if (to.name) {
-    NProgress.start();
-  }
-  next();
-});
-
-router.afterEach((to, from) => {
-  // Completa a animação da rota usando o progress bar
-  NProgress.done();
 });
 
 export default router;

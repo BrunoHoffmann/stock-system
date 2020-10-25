@@ -1,50 +1,15 @@
-const { ApolloServer } = require('apollo-server');
+/**
+ * Arquivo: server.js
+ * Descrição: arquivo responsável por toda a configuração e execução
+ * Data: 24/10/2020
+ * Author: Bruno Hoffmann
+ */
 
-const typeDefs = `
-	type Product {
-		id: Int
-		name: String
-		bar_code: String
-		amount: Int
-		value: String
-	}
+const app = require('./src/app');
 
-	type User {
-		id: Int
-		name: String
-		email: String
-		password: String
-		token: String
-	}
+const port = process.env.PORT || 3000;
 
-	type Query {
-		product: [Product]
-		user: [User]
-	}
-`;
+app.listen(port, () => {
+    console.log('Aplicação executando na porta ', port);
+});
 
-const product = [
-	{ id: 1, name: 'Luva', bar_code: '321232131231', amount: 19, value: '19,90' },
-	{ id: 2, name: 'Camisa', bar_code: '214215251521', amount: 21, value: '29,90' },
-	{ id: 3, name: 'Calça', bar_code: '1452142141241', amount: 2, value: '39,90' },
-];
-
-const user = [
-	{ id: 1, name: 'Bruno Hoffmann', email: 'brunohoffmanndev@gmail.com', password: 'flamengo1', token: '21323122312adwad@#@'},
-	{ id: 2, name: 'Tiago Hoffmann', email: 'brunohoffmanndev@gmail.com', password: 'flamengo1', token: '21323122312adwad@#@'},
-	{ id: 3, name: 'Amanda Hoffmann', email: 'brunohoffmanndev@gmail.com', password: 'flamengo1', token: '21323122312adwad@#@'},
-]
-
-const resolvers = {
-	Query: {
-		product() {
-			return product;
-		},
-		user() {
-			return user;
-		}
-	}
-}
-
-const server = new ApolloServer({ typeDefs, resolvers });
-server.listen();
