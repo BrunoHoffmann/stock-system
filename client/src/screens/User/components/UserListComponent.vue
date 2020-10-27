@@ -2,7 +2,7 @@
   <div>
     <div class="card p-4">
       <div>
-        <h2>{{ title }}</h2>
+        <h2>Lista de usuários</h2>
         <router-link :to="{ path: 'usuario/adicionar'}" class="btn btn-primary">
           Adicionar
         </router-link>
@@ -45,25 +45,9 @@
 </template>
 
 <script>
-import axios from 'axios';
 
 export default {
   name: 'UsuarioListComponent',
-  data() {
-    return {
-      title: 'Lista de usuários',
-      users: null,
-    };
-  },
-  methods: {
-    async getUsuarios() {
-      const resp = await axios.get('http://localhost:3000/api/user');
-      this.users = resp.data;
-      console.log(this.users[0]);
-    },
-  },
-  created() {
-    this.getUsuarios();
-  },
+  props: ['users'],
 };
 </script>

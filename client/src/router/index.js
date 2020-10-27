@@ -12,12 +12,12 @@ const routes = [
   {
     path: '/usuario',
     name: 'usuario',
-    component: () => import('../views/Usuario.vue'),
+    component: () => import('../screens/User/User.vue'),
   },
   {
     path: '/usuario/adicionar',
     name: 'usuario.adicionar',
-    component: () => import('../views/UsuarioAdd.vue'),
+    component: () => import('../screens/User/UserAdd.vue'),
   },
 ];
 

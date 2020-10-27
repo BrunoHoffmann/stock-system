@@ -22,14 +22,13 @@
 <script>
 export default {
   name: 'TheHeader',
-}
+};
 </script>
 
 <style scoped>
 .color-vue {
   background: #42B983 !important;
 }
-
 .text-vue {
   color: #42B983 !important;
 }

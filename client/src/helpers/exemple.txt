@@ -1,0 +1,1 @@
+bibliotecas de funções puras em js

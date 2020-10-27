@@ -18,7 +18,7 @@
       <div class="form-group">
         <label for="active">*Ativo:</label>
         <select name="active" class="form-control" id="active" v-model="active">
-          <option value="S">Sim</option>
+          <option selected value="S">Sim</option>
           <option value="N">Não</option>
         </select>
       </div>
@@ -31,8 +31,6 @@
 </template>
 
 <script>
-import axios from 'axios';
-
 export default {
   name: 'UsuarioAddComponent',
   data() {
@@ -44,18 +42,10 @@ export default {
     };
   },
   methods: {
-    async adicionarUsuario() {
-      if (this.name !== '' && this.email !== '' && this.password !== '' && this.active) {
-        const user = {
-          name: this.name,
-          email: this.email,
-          password: this.password,
-          active: this.active,
-        };
-
-        const resp = await axios.post('http://localhost:3000/api/user/add', user);
-        console.log(resp.data);
-      }
+    adicionarUsuario() {
+      this.$emit('users', {
+        name: this.name, email: this.email, password: this.password, active: this.active,
+      });
     },
   },
 };
