@@ -8,32 +8,17 @@ const { string } = require('joi');
 const Joi = require('joi');
 const db = require('../config/database');
 
+// => Método responsável por mostrar todos os usuarios
+exports.listAllUsers = async(req, res) => {
+  const response = await db.query('select * from users');
+
+  res.status(200).send(response.rows);
+};
+
 // => Método responsável por criar um novo 'User':
 exports.createUser = async(req, res) => {
   const { name, email, password, active } = req.body;
 
-  const userSchema = Joi.object({
-    name: Joi.string()
-      .min(3)
-      .max(30)
-      .required(),
-
-    email: Joi.string()
-    .pattern(/^[a-zA-Z0-9]{3,30}$/)
-    .required(),
-
-    email: string()
-      .email({ minDomainSegments: 2, tlds: { allow: ['com', 'net'] } })
-      .required(),
-    
-    active: string()
-      .max(1)
-      .min(1)
-      .required(),
-  });
-
-  const teste = userSchema.validade({name: name});
-  console.log(teste);
   //verificar erro do joi e ver porque a porta fica se perdendo...
   const { rows } = await db.query(
     'insert into users (name, email, password, active) values ($1, $2, $3, $4)',
@@ -48,9 +33,15 @@ exports.createUser = async(req, res) => {
   });
 };
 
-// => Método responsável por mostrar todos os usuarios
-exports.listAllUsers = async(req, res) => {
-  const response = await db.query('select * from users');
 
-  res.status(200).send(response.rows);
-};
+
+// => Método responsável por deletar um usuario
+exports.deleteUser = async(req, res) => {
+  const id = parseInt(req.params.id);
+  const { rows } = await db.query('delete from users where id = $1',
+    [id]
+  );
+
+  res.status(200).send({ message: 'User deleted successfully!' });
+  console.log(id);
+}

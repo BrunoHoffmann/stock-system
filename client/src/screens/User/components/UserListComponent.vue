@@ -3,6 +3,9 @@
     <div class="card p-4">
       <div>
         <h2>Lista de usuários</h2>
+        <div v-if="notify" class="alert" :class="notify.type">
+          {{ notify.mensagem }}
+        </div>
         <router-link :to="{ path: 'usuario/adicionar'}" class="btn btn-primary">
           Adicionar
         </router-link>
@@ -30,12 +33,7 @@
               >
                 Editar
               </router-link>
-              <router-link
-                :to="{ path: 'user/deletar', params: { id: user.id}}"
-                class="btn btn-danger"
-              >
-                Deletar
-              </router-link>
+              <a @click="deleteUser(user.id)" class="btn btn-danger">Deletar</a>
             </td>
           </tr>
         </tbody>
@@ -48,6 +46,11 @@
 
 export default {
   name: 'UsuarioListComponent',
-  props: ['users'],
+  props: ['users', 'notify'],
+  methods: {
+    deleteUser(id) {
+      this.$emit('deleteUser', id);
+    },
+  },
 };
 </script>

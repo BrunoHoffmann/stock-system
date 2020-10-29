@@ -1,7 +1,11 @@
 <template>
   <div>
-    <UsuarioListComponent :users="users"></UsuarioListComponent>
-    <router-view></router-view>
+    <UsuarioListComponent
+      :users="users"
+      :notify="notify"
+      @deleteUser="deleteUser"
+    >
+    </UsuarioListComponent>
   </div>
 </template>
 
@@ -14,6 +18,7 @@ export default {
   data() {
     return {
       users: [],
+      notify: {},
     };
   },
   components: {
@@ -23,6 +28,17 @@ export default {
     async getUsuarios() {
       const resp = await axios.get('http://localhost:3002/api/user');
       this.users = resp.data;
+    },
+    async deleteUser(id) {
+      const resp = await axios.get(`http://localhost:3002/api/user/delete/${id}`);
+
+      if (resp) {
+        this.notify = {
+          mensagem: 'Deletado com sucesso!',
+          type: 'success',
+        };
+      }
+      console.log(resp);
     },
   },
   created() {

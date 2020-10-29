@@ -10,9 +10,19 @@ const userController = require('../controllers/user.controller');
 
 // => Definindo as rotas do CRUD - 'User':
 
+// => Route responsável por listar os usuarios
 router.get('/user', userController.listAllUsers);
 
-// => Rota responsávle por criar um novo 'User' (POST): localhost
+// => Rota responsável por criar um novo 'User' (POST): localhost
 router.post('/user/add', userController.createUser);
+
+// => Rota responsável por pegar o usuario para a tela de edição do usuario
+//router.get('/user/edit/:id', userController.editUser);
+
+// => Rota responsável por alterar um usuario 
+//router.post('/user/edit/:id', userController.updateUser);
+
+// => Rota responsável por deletar um usuario
+router.get('/user/delete/:id', userController.deleteUser);
 
 module.exports = router;
