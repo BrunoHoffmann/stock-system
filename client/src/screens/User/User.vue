@@ -35,10 +35,10 @@ export default {
       if (resp) {
         this.notify = {
           mensagem: 'Deletado com sucesso!',
-          type: 'success',
+          type: 'alert-success',
         };
       }
-      console.log(resp);
+      this.getUsuarios();
     },
   },
   created() {

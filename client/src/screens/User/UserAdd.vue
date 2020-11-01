@@ -1,5 +1,6 @@
 <template>
   <div>
+    <h1>Adicionar usuário</h1>
     <UsuarioAddComponent @users="adicionar"></UsuarioAddComponent>
   </div>
 </template>
@@ -16,7 +17,6 @@ export default {
   methods: {
     async adicionar(users) {
       const resp = await axios.post('http://localhost:3002/api/user/add', users);
-
       if (resp) {
         this.$router.push({ name: 'usuario' });
       } else {

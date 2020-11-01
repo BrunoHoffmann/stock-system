@@ -19,6 +19,11 @@ const routes = [
     name: 'usuario.adicionar',
     component: () => import('../screens/User/UserAdd.vue'),
   },
+  {
+    path: '/usuario/editar/:id',
+    name: 'usuario.edit',
+    component: () => import('../screens/User/UserEdit.vue'),
+  },
 ];
 
 const router = new VueRouter({

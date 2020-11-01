@@ -15,6 +15,15 @@ exports.listAllUsers = async(req, res) => {
   res.status(200).send(response.rows);
 };
 
+// => Método responsável por obter um usuario
+exports.getUser = async(req, res) => {
+  const id = parseInt(req.params.id);
+
+  const { rows } = await db.query('select * from users where id = $1', [id]);
+
+  res.status(200).send(rows);
+}
+
 // => Método responsável por criar um novo 'User':
 exports.createUser = async(req, res) => {
   const { name, email, password, active } = req.body;
@@ -43,5 +52,4 @@ exports.deleteUser = async(req, res) => {
   );
 
   res.status(200).send({ message: 'User deleted successfully!' });
-  console.log(id);
 }

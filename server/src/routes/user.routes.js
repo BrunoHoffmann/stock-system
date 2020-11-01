@@ -13,6 +13,9 @@ const userController = require('../controllers/user.controller');
 // => Route responsável por listar os usuarios
 router.get('/user', userController.listAllUsers);
 
+// => Route responsável por obter um usuario
+router.get('/user/:id', userController.getUser);
+
 // => Rota responsável por criar um novo 'User' (POST): localhost
 router.post('/user/add', userController.createUser);
 

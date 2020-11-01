@@ -28,7 +28,7 @@
             <td>{{ user.active == 'S' ? 'Sim' : 'Não' }}</td>
             <td>
               <router-link
-                :to="{ path: 'user/editar', params: { id: user.id}}"
+                :to="{ path: `usuario/editar/${user.id}` }"
                 class="btn btn-primary mr-2"
               >
                 Editar
