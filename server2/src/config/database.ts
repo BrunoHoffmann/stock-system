@@ -3,8 +3,9 @@
  * Descrição: arquivo responsável pelas 'connectionString
  */
 
-const { Pool } = require('pg');
-const dotenv = require('dotenv');
+import { Pool } from 'pg';
+import dotenv from'dotenv';
+import { ArraySchema } from 'joi';
 
 dotenv.config();
 
@@ -18,5 +19,5 @@ pool.on('connect', () => {
 });
 
 module.exports = {
-  query: (text, params) => pool.query(text, params),
+  query: (text: string, params = []) => pool.query(text, params),
 };

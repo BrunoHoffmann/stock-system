@@ -7,16 +7,17 @@
 const { string } = require('joi');
 const Joi = require('joi');
 const db = require('../config/database');
+import { Request, Response } from 'express';
 
 // => Método responsável por mostrar todos os usuarios
-exports.listAllUsers = async(req, res) => {
+exports.listAllUsers = async(req: Request, res: Response) => {
   const response = await db.query('select * from users');
 
   res.status(200).send(response.rows);
 };
 
 // => Método responsável por obter um usuario
-exports.getUser = async(req, res) => {
+exports.getUser = async(req: Request, res: Response) => {
   const id = parseInt(req.params.id);
 
   const { rows } = await db.query('select * from users where id = $1', [id]);
@@ -25,7 +26,7 @@ exports.getUser = async(req, res) => {
 }
 
 // => Método responsável por criar um novo 'User':
-exports.createUser = async(req, res) => {
+exports.createUser = async(req: Request, res: Response) => {
   const { name, email, password, active } = req.body;
 
   //verificar erro do joi e ver porque a porta fica se perdendo...
@@ -43,7 +44,7 @@ exports.createUser = async(req, res) => {
 };
 
 // => Método responsável por obter um usuario
-exports.editUser = async(req, res) => {
+exports.editUser = async(req: Request, res: Response) => {
   const id = parseInt(req.params.id);
 
   const { rows } = await db.query('select * from users where id = $1', [id]);
@@ -52,7 +53,7 @@ exports.editUser = async(req, res) => {
 }
 
 // => Método responsável por alterar um usuario
-exports.updateUser = async(req, res) => {
+exports.updateUser = async(req: Request, res: Response) => {
   const id = parseInt(req.params.id);
   const { name, email, password, active } = req.body;
 
@@ -76,7 +77,7 @@ exports.updateUser = async(req, res) => {
 }
 
 // => Método responsável por deletar um usuario
-exports.deleteUser = async(req, res) => {
+exports.deleteUser = async(req: Request, res: Response) => {
   const id = parseInt(req.params.id);
   const { rows } = await db.query('delete from users where id = $1',
     [id]

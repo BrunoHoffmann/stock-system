@@ -5,11 +5,11 @@
   * Author: Bruno Hoffmann
  */
 
-const express = require('express');
+import { Request, Response } from 'express';
 
-const router = express.Router();
+//const router = express.Router();
 
-router.get('/api', (req, res) => {
+router.get('/api', (req: Request, res: Response) => {
   res.status(200).send({
     success: 'true', 
     message: 'Seja bem vindo(a) a API Node.js + Vue.js + PostgreSQL',
