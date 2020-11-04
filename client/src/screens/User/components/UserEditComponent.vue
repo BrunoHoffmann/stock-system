@@ -22,7 +22,7 @@
           <option value="N">Não</option>
         </select>
       </div>
-      <button class="btn btn-primary mr-3" @click.prevent="editarUsuario">Editar</button>
+      <button class="btn btn-primary mr-3" @click.prevent="editUser">Editar</button>
       <router-link to="/usuario" class="btn btn-success">Voltar</router-link>
     </form>
   </div>
@@ -34,6 +34,7 @@ export default {
   props: ['user'],
   data() {
     return {
+      id: '',
       name: '',
       email: '',
       password: '',
@@ -42,10 +43,22 @@ export default {
   },
   watch: {
     user(newVal) {
+      this.id = newVal.id;
       this.name = newVal.name;
       this.email = newVal.email;
       this.password = newVal.password;
       this.active = newVal.naactiveme;
+    },
+  },
+  methods: {
+    editUser() {
+      this.$emit('user', {
+        id: this.id,
+        name: this.name,
+        email: this.email,
+        password: this.password,
+        active: this.active,
+      });
     },
   },
 };

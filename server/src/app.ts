@@ -5,13 +5,13 @@
  * Author: Bruno Hoffmann
  */
 
-const express = require('express');
-const cors = require('cors');
+import express from 'express';
+import cors from 'cors';
 
 const app = express();
 
-const index = require('./routes/index');
-const userRoute = require('./routes/user.routes');
+import index from './routes/index';
+import userRoute from './routes/user.routes';
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());

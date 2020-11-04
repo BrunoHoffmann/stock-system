@@ -20,10 +20,10 @@ router.get('/user/:id', userController.getUser);
 router.post('/user/add', userController.createUser);
 
 // => Rota responsável por pegar o usuario para a tela de edição do usuario
-//router.get('/user/edit/:id', userController.editUser);
+router.get('/user/edit/:id', userController.editUser);
 
 // => Rota responsável por alterar um usuario 
-//router.post('/user/edit/:id', userController.updateUser);
+router.post('/user/edit/:id', userController.updateUser);
 
 // => Rota responsável por deletar um usuario
 router.get('/user/delete/:id', userController.deleteUser);

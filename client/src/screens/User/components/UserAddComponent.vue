@@ -43,7 +43,7 @@ export default {
   },
   methods: {
     adicionarUsuario() {
-      this.$emit('users', {
+      this.$emit('user', {
         name: this.name, email: this.email, password: this.password, active: this.active,
       });
     },

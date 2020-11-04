@@ -1,7 +1,7 @@
 <template>
   <div>
     <h1>Editar usuário</h1>
-    <UserEditComponent :user="user[0]"/>
+    <UserEditComponent :user="user[0]" @user="editUser"/>
   </div>
 </template>
 
@@ -23,12 +23,21 @@ export default {
   methods: {
     async getUser() {
       this.id = this.$route.params.id;
-      const response = await axios.get(`http://localhost:3002/api/user/${this.id}`);
+      const response = await axios.get(`http://localhost:3002/api/user/edit/${this.id}`);
 
       if (response) {
         this.user = response.data;
       } else {
         this.$route.push({ name: 'usuario' });
+      }
+    },
+    async editUser(user) {
+      const resp = await axios.post(`http://localhost:3002/api/user/edit/${user.id}`, user);
+
+      if (resp.success) {
+        this.$router.push({ name: 'usuario' });
+      } else {
+        console.log(resp);
       }
     },
   },

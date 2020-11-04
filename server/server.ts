@@ -5,7 +5,7 @@
  * Author: Bruno Hoffmann
  */
 
-const app = require('./src/app');
+import app from 'src/app';
 
 const port = process.env.PORT || 3002;
 
