@@ -26,11 +26,11 @@ export default {
   },
   methods: {
     async getUsuarios() {
-      const resp = await axios.get('http://localhost:3002/api/user');
+      const resp = await axios.get('http://localhost:3333/users');
       this.users = resp.data;
     },
     async deleteUser(id) {
-      const resp = await axios.get(`http://localhost:3002/api/user/delete/${id}`);
+      const resp = await axios.get(`http://localhost:3333/users/delete/${id}`);
 
       if (resp) {
         this.notify = {

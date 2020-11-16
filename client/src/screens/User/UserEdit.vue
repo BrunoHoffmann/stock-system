@@ -23,7 +23,7 @@ export default {
   methods: {
     async getUser() {
       this.id = this.$route.params.id;
-      const response = await axios.get(`http://localhost:3002/api/user/edit/${this.id}`);
+      const response = await axios.get(`http://localhost:3333/users/edit/${this.id}`);
 
       if (response) {
         this.user = response.data;
@@ -32,7 +32,7 @@ export default {
       }
     },
     async editUser(user) {
-      const resp = await axios.post(`http://localhost:3002/api/user/edit/${user.id}`, user);
+      const resp = await axios.post(`http://localhost:3333/users/edit/${user.id}`, user);
 
       if (resp.success) {
         this.$router.push({ name: 'usuario' });
