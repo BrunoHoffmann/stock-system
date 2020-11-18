@@ -16,7 +16,8 @@ export default {
   },
   methods: {
     async adicionar(user) {
-      const resp = await axios.post('http://localhost:3333/users/add', user);
+      console.log(user);
+      const resp = await axios.post('http://localhost:3333/users/add/', user);
       if (resp) {
         this.$router.push({ name: 'usuario' });
       } else {

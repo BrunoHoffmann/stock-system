@@ -26,7 +26,7 @@ export default {
   },
   methods: {
     async getUsuarios() {
-      const resp = await axios.get('http://localhost:3333/users');
+      const resp = await axios.get('http://localhost:3333/users/');
       this.users = resp.data;
     },
     async deleteUser(id) {
