@@ -5,25 +5,30 @@ Vue.use(VueRouter);
 
 const routes = [
   {
-    path: '/usuario',
-    name: 'usuario',
-    component: () => import('../screens/User/User.vue'),
+    path: '/login',
+    name: 'Login',
+    component: () => import('@/screens/Login/Login.vue'),
   },
   {
-    path: '/usuario/adicionar',
-    name: 'usuario.adicionar',
-    component: () => import('../screens/User/UserAdd.vue'),
-  },
-  {
-    path: '/usuario/editar/:id',
-    name: 'usuario.edit',
-    component: () => import('../screens/User/UserEdit.vue'),
+    path: '/dash',
+    name: 'Dash',
+    component: () => import('@/screens/Master/Dash.vue'),
+    children: [
+      {
+        path: '',
+        name: 'Dash.Home',
+        component: () => import('@/screens/Home/Home.vue'),
+      },
+      {
+        path: 'funcionarios',
+        name: 'Dash.Employee',
+        component: () => import('@/screens/Employee/Employee.vue'),
+      },
+    ],
   },
 ];
 
 const router = new VueRouter({
-  mode: 'history',
-  base: process.env.BASE_URL,
   routes,
 });
 

@@ -1,1 +1,0 @@
-componentes que serão compartilhado em diferentes screens
